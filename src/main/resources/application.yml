@@ -1,0 +1,39 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /manufacturing
+
+spring:
+  application:
+    name: smartmes.manufacturing
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    database: ${DB_NAME:db_smartmes}
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:db_smartmes}?useTimezone=true&serverTimezone=America/Belem&createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+    username: ${DB_USER:root}
+    password: ${DB_PASS:toor}
+    hikari:
+      pool-name: HikariCP
+      minimum-idle: 5
+      maximum-pool-size: 30
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+      leak-detection-threshold: 60000
+  transaction:
+    default-timeout: 120
+  jpa:
+    show-sql: true
+    properties:
+      hibernate.format_sql: true
+  liquibase:
+    contexts: ${spring.profiles.active}
+    default-schema: ${spring.datasource.database}
+    change-log: classpath:/liquibase/liquibase-changelog.yml
+    user: ${spring.datasource.username}
+    password: ${spring.datasource.password}
+    enabled: true
+
+logging.level:
+  org.springframework.web.filter.CommonsRequestLoggingFilter: DEBUG
+  org.hibernate.type.descriptor.sql.BasicBinder: TRACE

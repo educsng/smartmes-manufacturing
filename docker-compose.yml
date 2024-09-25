@@ -1,0 +1,33 @@
+version: '3.7'
+
+services:
+  db:
+    image: mysql:8.0.20
+    container_name: mysql-db
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_USER: root
+      MYSQL_PASSWORD: toor
+      MYSQL_DATABASE: db_smartmes
+      MYSQL_ROOT_PASSWORD: toor
+      TZ: America/Belem
+    volumes:
+      - "./data:/docker-entrypoint-initdb.d/"
+
+  app:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+      network: "host"
+    image: smartmes-manufacturing
+    container_name: smartmes-manufacturing
+    environment:
+      - JAVA_OPTS=-Dspring.profiles.active=default
+      - DB_HOST=db # caso não subir a aplicação, alterar o host para o IP do container mysql
+    # - DB_HOST=172.19.0.2
+    ports:
+      - "8080:8080"
+    privileged: true
+    depends_on:
+      - db

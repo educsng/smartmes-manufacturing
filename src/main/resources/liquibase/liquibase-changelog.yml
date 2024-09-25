@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-databases
+      author: setup-automation
+      runInTransaction: false
+      changes:
+        - sqlFile:
+            encoding: utf8
+            path: ./v1/create-databases.sql
+            relativeToChangelogFile: true
