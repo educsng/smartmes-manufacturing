@@ -16,10 +16,16 @@ Para rodar a aplicação, basta executar o comando abaixo para subir um docker c
 docker compose up -d
 ````
 
+Caso encontre problemas para subir o docker compose, tente recriar os containers
+
+````bash
+docker compose up -d --force-recreate
+````
+
 ## Como testar a aplicação
 
-Chamando o endpoint /hello para validar que a aplicação está de pé e conectada ao banco de dados
+Chamando o endpoint /hello para validar que a aplicação está UP e conectada ao banco de dados
 
-````curl
+````bash
 curl http://localhost:8080/manufacturing/hello
 ````

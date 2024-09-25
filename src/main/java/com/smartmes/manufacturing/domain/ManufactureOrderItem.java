@@ -1,7 +1,10 @@
 package com.smartmes.manufacturing.domain;
 
+import com.smartmes.manufacturing.enumeration.UnitMeasurementType;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -27,13 +30,18 @@ public class ManufactureOrderItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank
     private String description;
 
     @NotNull
     private Integer quantity;
 
-    @NotBlank
-    private String unit;
+    @NotNull
+    private Integer nonConformingQuantity;
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private UnitMeasurementType unit;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "manufacture_order_id")

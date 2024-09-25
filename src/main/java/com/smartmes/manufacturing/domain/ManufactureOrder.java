@@ -1,6 +1,7 @@
 package com.smartmes.manufacturing.domain;
 
 import com.smartmes.manufacturing.enumeration.OrderStatus;
+import com.smartmes.manufacturing.enumeration.ShiftType;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -12,14 +13,13 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.JoinColumnOrFormula;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
@@ -37,7 +37,17 @@ public class ManufactureOrder {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank
+    private String orderNumber;
+
     private String description;
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private ShiftType shift;
+
+    @NotNull
+    private Integer batchNumber;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createdAt;
@@ -57,8 +67,9 @@ public class ManufactureOrder {
     private Employee employee;
 
     @NotNull
+    @Builder.Default
     @Enumerated(EnumType.STRING)
-    private OrderStatus orderStatus;
+    private OrderStatus orderStatus = OrderStatus.CREATED;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<ManufactureOrderItem> items;
