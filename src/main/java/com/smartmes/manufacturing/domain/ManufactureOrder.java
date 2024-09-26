@@ -46,9 +46,6 @@ public class ManufactureOrder {
     @Enumerated(EnumType.STRING)
     private ShiftType shift;
 
-    @NotNull
-    private Integer batchNumber;
-
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createdAt;
 
