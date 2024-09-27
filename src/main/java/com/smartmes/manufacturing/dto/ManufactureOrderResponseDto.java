@@ -26,8 +26,6 @@ public class ManufactureOrderResponseDto {
         private Long id;
         private String orderNumber;
         private String description;
-        private String shift;
-        private Integer batchNumber;
         @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
         private LocalDateTime createdAt;
         private String equipment;
@@ -47,5 +45,6 @@ public class ManufactureOrderResponseDto {
         private Integer quantity;
         private Integer nonConformingQuantity;
         private String unit;
+        private String shift;
     }
 }

@@ -1,8 +1,6 @@
 package com.smartmes.manufacturing.domain;
 
 import com.smartmes.manufacturing.enumeration.OrderStatus;
-import com.smartmes.manufacturing.enumeration.ShiftType;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -42,10 +40,6 @@ public class ManufactureOrder {
 
     private String description;
 
-    @NotNull
-    @Enumerated(EnumType.STRING)
-    private ShiftType shift;
-
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createdAt;
 
@@ -68,6 +62,6 @@ public class ManufactureOrder {
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus = OrderStatus.CREATED;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "order", fetch = FetchType.EAGER)
     private List<ManufactureOrderItem> items;
 }

@@ -1,5 +1,6 @@
 package com.smartmes.manufacturing.dto;
 
+import com.smartmes.manufacturing.enumeration.ShiftType;
 import com.smartmes.manufacturing.enumeration.UnitMeasurementType;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -20,6 +21,10 @@ public class ManufactureOrderItemRequestDto {
     private Integer quantity;
 
     private Integer nonConformingQuantity;
+
+    @NotNull(message = "O campo shift é obrigatório")
+    @Enumerated(EnumType.STRING)
+    private ShiftType shift;
 
     @Enumerated(EnumType.STRING)
     private UnitMeasurementType unit;

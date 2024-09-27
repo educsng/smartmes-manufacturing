@@ -1,6 +1,5 @@
 package com.smartmes.manufacturing.dto;
 
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,15 +12,10 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ManufactureOrderRequestDto {
+public class ManufactureOrderUpdateRequestDto {
 
-    private String description;
-
-    @NotBlank(message = "O campo orderNumber é obrigatório")
-    private String orderNumber;
-
-    @NotNull(message = "O campo equipmentId é obrigatório")
-    private Long equipmentId;
+    @NotNull(message = "O campo orderId é obrigatório")
+    private Long orderId;
 
     private List<ManufactureOrderItemRequestDto> items;
 }

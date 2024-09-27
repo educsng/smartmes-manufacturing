@@ -3,6 +3,7 @@ package com.smartmes.manufacturing.controller;
 import com.smartmes.manufacturing.dto.ManufactureOrderRequestDto;
 import com.smartmes.manufacturing.dto.ManufactureOrderResponseDto;
 import com.smartmes.manufacturing.service.ManufactureOrderService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,7 +18,7 @@ public class ManufactureController {
     private final ManufactureOrderService manufactureOrderService;
 
     @PostMapping
-    public ManufactureOrderResponseDto createManufactureOrder(@RequestBody ManufactureOrderRequestDto requestDto) {
+    public ManufactureOrderResponseDto createManufactureOrder(@Valid @RequestBody ManufactureOrderRequestDto requestDto) {
         return manufactureOrderService.createManufactureOrder(requestDto);
     }
 }

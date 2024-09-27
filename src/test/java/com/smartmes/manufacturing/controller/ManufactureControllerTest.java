@@ -37,4 +37,19 @@ public class ManufactureControllerTest {
         assertNotNull(order);
     }
 
+    @Test
+    public void shouldNotCreateAndReturnNewManufactureOrder_withValidData() {
+        // Arrange
+        var request = mock(ManufactureOrderRequestDto.class);
+        var response = mock(ManufactureOrderResponseDto.class);
+
+        when(service.createManufactureOrder(request)).thenReturn(response);
+
+        // Act
+        ManufactureOrderResponseDto order = controller.createManufactureOrder(request);
+
+        // Assert
+        assertNotNull(order);
+    }
+
 }

@@ -1,7 +1,7 @@
 package com.smartmes.manufacturing.domain;
 
+import com.smartmes.manufacturing.enumeration.ShiftType;
 import com.smartmes.manufacturing.enumeration.UnitMeasurementType;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -41,7 +41,11 @@ public class ManufactureOrderItem {
     @Enumerated(EnumType.STRING)
     private UnitMeasurementType unit;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private ShiftType shift;
+
+    @ManyToOne
     @JoinColumn(name = "manufacture_order_id")
     private ManufactureOrder order;
 }
