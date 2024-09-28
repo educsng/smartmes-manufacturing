@@ -22,10 +22,16 @@ Caso encontre problemas para subir o docker compose, tente recriar os containers
 docker compose up -d --force-recreate
 ````
 
+Se isso não funcionar, execute o comando abaixo para remover a imagem e em seguida execute o comando acima para fazer o pull novamente.
+
+````bash
+docker rmi smartmes-manufacturing
+````
+
 ## Como testar a aplicação
 
 Chamando o endpoint /hello para validar que a aplicação está UP e conectada ao banco de dados
 
 ````bash
-curl http://localhost:8080/manufacturing/hello
+curl http://localhost:8080/smartmes/hello
 ````
