@@ -1,6 +1,8 @@
 package com.smartmes.manufacturing.dto;
 
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,5 +25,6 @@ public class ManufactureOrderRequestDto {
     @NotNull(message = "O campo equipmentId é obrigatório")
     private Long equipmentId;
 
-    private List<ManufactureOrderItemRequestDto> items;
+    @NotEmpty(message = "O campo items é obrigatório")
+    private List<@Valid ManufactureOrderItemRequestDto> items;
 }

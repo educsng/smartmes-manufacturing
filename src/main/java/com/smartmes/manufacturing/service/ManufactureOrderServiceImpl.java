@@ -30,7 +30,7 @@ public class ManufactureOrderServiceImpl implements ManufactureOrderService {
 
     @Override
     @Transactional
-    public ManufactureOrderResponseDto createManufactureOrder(ManufactureOrderRequestDto requestDto) {
+    public ManufactureOrderResponseDto createOrUpdateManufactureOrder(ManufactureOrderRequestDto requestDto) {
         manufactureOrderValidator.validateCreateManufactureOrder(requestDto);
 
         // Simulates a database or external call to get order (e.g. ERP)
@@ -48,14 +48,11 @@ public class ManufactureOrderServiceImpl implements ManufactureOrderService {
         final Equipment equipment = equipmentRepository.findById(requestDto.getEquipmentId())
             .orElseThrow(() -> new RuntimeException("O identificador do equipamento não foi encontrado, insira um identificador válido"));
 
-        try {
-            ManufactureOrder savedOrder = manufactureOrderRepository.save(manufactureOrderMapper.toManufactureOrder(requestDto, equipment));
-            savedOrder.getItems().forEach(item -> item.setOrder(savedOrder));
-            this.saveManufactureItems(savedOrder);
-            return manufactureOrderMapper.toManufactureOrderResponseDto(savedOrder);
-        } catch (Exception e) {
-            throw new RuntimeException("Erro no registro da ordem de produção");
-        }
+        ManufactureOrder savedOrder = manufactureOrderRepository.save(manufactureOrderMapper.toManufactureOrder(requestDto, equipment));
+        savedOrder.getItems().forEach(item -> item.setOrder(savedOrder));
+        this.saveManufactureItems(savedOrder);
+
+        return manufactureOrderMapper.toManufactureOrderResponseDto(savedOrder);
     }
 
     @Transactional

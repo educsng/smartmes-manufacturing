@@ -18,7 +18,7 @@ public class ManufactureController {
     private final ManufactureOrderService manufactureOrderService;
 
     @PostMapping
-    public ManufactureOrderResponseDto createManufactureOrder(@Valid @RequestBody ManufactureOrderRequestDto requestDto) {
-        return manufactureOrderService.createManufactureOrder(requestDto);
+    public ManufactureOrderResponseDto createOrUpdateManufactureOrder(@Valid @RequestBody ManufactureOrderRequestDto requestDto) {
+        return manufactureOrderService.createOrUpdateManufactureOrder(requestDto);
     }
 }

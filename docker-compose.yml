@@ -30,7 +30,7 @@ services:
       - smartmes
     environment:
       - JAVA_OPTS=-Dspring.profiles.active=default
-      - DB_HOST=172.30.0.2 # caso não subir a aplicação, alterar o host para o IP do container mysql
+      - DB_HOST=db # caso não subir a aplicação, alterar o host para o IP do container mysql
     ports:
       - "8080:8080"
     privileged: true

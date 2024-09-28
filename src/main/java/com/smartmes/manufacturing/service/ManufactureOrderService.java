@@ -5,5 +5,5 @@ import com.smartmes.manufacturing.dto.ManufactureOrderResponseDto;
 
 public interface ManufactureOrderService {
 
-    ManufactureOrderResponseDto createManufactureOrder(ManufactureOrderRequestDto manufactureOrder);
+    ManufactureOrderResponseDto createOrUpdateManufactureOrder(ManufactureOrderRequestDto manufactureOrder);
 }
